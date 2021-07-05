@@ -10,7 +10,7 @@ const connection = (io, contacts, chats) => {
         const user = socket.handshake.query;
 
         if (user.id) {
-            currentUser = contacts.find(contact => contact.id === user.id);
+            currentUser = contacts.find(contact => contact.id.toString() === user.id);
         }
 
         if (currentUser) {
