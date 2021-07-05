@@ -1,7 +1,8 @@
 class Message {
-    constructor(author, text) {
-        this.author = author;
-        this.text = text;
+    constructor(messageData) {
+        this.author = messageData.author;
+        this.receiver = messageData.receiver
+        this.text = messageData.text;
         this.time = new Date();
     };
 
