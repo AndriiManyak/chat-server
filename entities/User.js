@@ -6,7 +6,7 @@ class User {
         this.description = 'new user description';
         this.image = 'https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg';
         this.id = User.idCounter;
-        this.isOnline = false;
+        this.isOnline = true;
         this.socketId = sockedId
 
         User.idCounter++;
