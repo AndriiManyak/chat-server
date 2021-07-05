@@ -1,4 +1,5 @@
 const disconnect = require('./disonnect');
+const joinChat = require('./joinChat');
 const User = require('../../entities/User');
 
 const connection = (io, contacts) => {
@@ -14,18 +15,18 @@ const connection = (io, contacts) => {
 
         if (currentUser) {
             currentUser.goOnline();
+            currentUser.setSocketId(socket.id);
         } else {
-            const newUser = new User(socket.id)
-            currentUser = newUser;
-            currentUser.goOnline();
+            const newUser = new User(socket.id);
             contacts.push(newUser);
-            socket.emit('receive_created_user_info', newUser);
+            currentUser = newUser;
+            socket.emit('receive_created_user_info', currentUser);
         }
 
-        io.to('messenger').emit('receive_list_of_contacts', contacts.filter(contact => contact.id !== currentUser.id));
+        io.to('messenger').emit('receive_list_of_contacts', contacts);
 
-
-        disconnect(socket, io, contacts);
+        joinChat(io, socket, currentUser);
+        disconnect(socket, io, contacts, currentUser);
     });
 };
 
