@@ -1,6 +1,6 @@
 class Chat {
-    constructor() {
-        this.roomIdentifier = ''
+    constructor(firstUser, secondUser) {
+        this.id = `${firstUser}&&${secondUser}`;
         this.users = [];
         this.messages = [];
     };
