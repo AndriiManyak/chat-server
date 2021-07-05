@@ -1,8 +1,8 @@
-const disconnect = require('./disonnect');
+const disconnect = require('./disconnect');
 const joinChat = require('./joinChat');
 const User = require('../../entities/User');
 
-const connection = (io, contacts) => {
+const connection = (io, contacts, chats) => {
     io.on('connection', socket => {
         let currentUser;
         socket.join('messenger');
@@ -25,7 +25,7 @@ const connection = (io, contacts) => {
 
         io.to('messenger').emit('receive_list_of_contacts', contacts);
 
-        joinChat(io, socket, currentUser);
+        joinChat(io, socket, currentUser, chats);
         disconnect(socket, io, contacts, currentUser);
     });
 };

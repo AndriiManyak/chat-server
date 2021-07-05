@@ -17,6 +17,10 @@ const contacts = [
 
 ];
 
+const chats = [
+
+];
+
 const io = socket(server, {
     cors: {
         origin: '*',
@@ -24,4 +28,4 @@ const io = socket(server, {
 });
 
 
-connection(io, contacts);
+connection(io, contacts, chats);
