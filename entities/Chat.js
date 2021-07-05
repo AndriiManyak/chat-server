@@ -1,6 +1,6 @@
 class Chat {
-    constructor(firstUser, secondUser) {
-        this.id = `${firstUser}&&${secondUser}`;
+    constructor(firstUserId, secondUserId) {
+        this.id = `${firstUserId}&&${secondUserId}`;
         this.users = [];
         this.messages = [];
     };
