@@ -1,9 +1,9 @@
 class Message {
     constructor(messageData) {
+        this.id = messageData.id;
         this.author = messageData.author;
-        this.receiver = messageData.receiver
         this.text = messageData.text;
-        this.time = new Date();
+        this.time = messageData.time;
     };
 
     setSeenTime() {

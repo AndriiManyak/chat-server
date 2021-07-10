@@ -1,8 +1,10 @@
+const generateRandomName = require('../utils/generateRandomName');
+
 class User {
     static idCounter = 1;
 
     constructor(sockedId) {
-        this.name = 'new user';
+        this.name = generateRandomName();
         this.description = 'new user description';
         this.image = 'https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg';
         this.id = User.idCounter;

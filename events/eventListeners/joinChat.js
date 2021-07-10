@@ -1,4 +1,4 @@
-const receiveMessage = require('./receiveMessage');
+const sendMessage = require('./sendMessage');
 const defineChat = require('../../utils/defineChat');
 const Chat = require('../../entities/Chat');
 
@@ -7,6 +7,8 @@ const joinChat = (io, socket, currentUser, chats) => {
 
     socket.on('join_chat', connectedUser => {
         const definedChat = defineChat(chats, currentUser, connectedUser);
+
+        socket.removeAllListeners('send_message');
 
         if (definedChat) {
             currentChat = definedChat
@@ -17,7 +19,8 @@ const joinChat = (io, socket, currentUser, chats) => {
         }
 
         socket.join(currentChat.id);
-        receiveMessage(io, socket, currentChat);
+        socket.emit('receive_messages', currentChat.messages);
+        sendMessage(io, socket, currentChat);
     });
 };
 

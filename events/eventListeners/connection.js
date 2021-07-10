@@ -20,10 +20,10 @@ const connection = (io, contacts, chats) => {
             const newUser = new User(socket.id);
             contacts.push(newUser);
             currentUser = newUser;
-            socket.emit('receive_created_user_info', currentUser);
+            socket.emit('receive_created_user', currentUser);
         }
 
-        io.to('messenger').emit('receive_list_of_contacts', contacts);
+        io.to('messenger').emit('receive_contacts', contacts);
 
         joinChat(io, socket, currentUser, chats);
         disconnect(socket, io, contacts, currentUser);
