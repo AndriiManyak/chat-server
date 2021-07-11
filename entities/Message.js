@@ -1,9 +1,11 @@
+const {v4} = require("uuid");
+
 class Message {
     constructor(messageData) {
-        this.id = messageData.id;
+        this.id = v4();
         this.author = messageData.author;
         this.text = messageData.text;
-        this.time = messageData.time;
+        this.time = new Date();
         this.receiver = messageData.receiver;
     };
 

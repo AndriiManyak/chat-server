@@ -3,15 +3,14 @@ const parseTime = require("./parseTime");
 const {v4} = require("uuid");
 
 const handleBotReceiveMessage = (socket, message, chat) => {
-    const {receiver: bot, text} = message;
+    const {receiver: bot, text, author} = message;
 
     switch (bot.id) {
         case 'echoBot': {
             const messageData = {
-                id: v4(),
                 author: bot,
+                receiver: author,
                 text: text,
-                time: parseTime(new Date())
             };
 
             const newMessage = new Message(messageData);
@@ -22,10 +21,9 @@ const handleBotReceiveMessage = (socket, message, chat) => {
         }
         case 'reverseBot': {
             const messageData = {
-                id: v4(),
                 author: bot,
+                receiver: author,
                 text: text.split('').reverse().join(''),
-                time: parseTime(new Date())
             };
 
             const newMessage = new Message(messageData);
