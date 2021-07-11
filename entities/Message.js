@@ -7,6 +7,7 @@ class Message {
         this.text = messageData.text;
         this.time = new Date();
         this.receiver = messageData.receiver;
+        this.seenTime = null;
     };
 
     setSeenTime() {
