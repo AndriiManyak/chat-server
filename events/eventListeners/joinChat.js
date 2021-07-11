@@ -2,6 +2,7 @@ const sendMessage = require('./sendMessage');
 const defineChat = require('../../utils/defineChat');
 const Chat = require('../../entities/Chat');
 const leaveChatRooms = require("../../utils/leaveChatRooms");
+const userTypingMessage = require("../eventEmitters/userTypingMessage");
 
 const joinChat = (io, socket, currentUser, chats) => {
     let currentChat;
@@ -10,6 +11,7 @@ const joinChat = (io, socket, currentUser, chats) => {
         const definedChat = defineChat(chats, currentUser, connectedUser);
 
         socket.removeAllListeners('send_message');
+        socket.removeAllListeners('typing_message');
         leaveChatRooms(socket);
 
         if (definedChat) {
@@ -23,6 +25,7 @@ const joinChat = (io, socket, currentUser, chats) => {
         socket.join(currentChat.id);
         socket.emit('receive_messages', currentChat.messages);
         sendMessage(io, socket, currentChat);
+        userTypingMessage(io, socket, currentChat);
     });
 };
 

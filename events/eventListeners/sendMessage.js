@@ -12,8 +12,6 @@ const sendMessage = (io, socket, chat) => {
             chat.addMessage(newMessage);
             socket.broadcast.to(chat.id).emit('receive_message', newMessage);
         }
-
-
     });
 };
 
