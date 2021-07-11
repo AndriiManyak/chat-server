@@ -16,9 +16,8 @@ const connection = (io, contacts, chats) => {
 
         if (currentUser) {
             currentUser.goOnline();
-            currentUser.setSocketId(socket.id);
         } else {
-            const newUser = new User(socket.id);
+            const newUser = new User();
             contacts.push(newUser);
             currentUser = newUser;
             socket.emit('receive_created_user', currentUser);

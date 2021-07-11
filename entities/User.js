@@ -3,13 +3,12 @@ const generateRandomName = require('../utils/generateRandomName');
 class User {
     static idCounter = 1;
 
-    constructor(sockedId) {
+    constructor() {
         this.name = generateRandomName();
         this.description = 'new user description';
         this.image = 'https://i.ibb.co/FzL4CmY/user-image.png';
         this.id = User.idCounter;
         this.isOnline = true;
-        this.socketId = sockedId
 
         User.idCounter++;
     };
@@ -20,10 +19,6 @@ class User {
 
     goOffline() {
         this.isOnline = false;
-    };
-
-    setSocketId(sockedId) {
-        this.sockedId = sockedId;
     };
 }
 

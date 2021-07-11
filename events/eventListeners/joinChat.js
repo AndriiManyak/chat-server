@@ -2,7 +2,7 @@ const sendMessage = require('./sendMessage');
 const defineChat = require('../../utils/defineChat');
 const Chat = require('../../entities/Chat');
 const leaveChatRooms = require("../../utils/leaveChatRooms");
-const userTypingMessage = require("../eventEmitters/userTypingMessage");
+const userTypingMessage = require("./userTypingMessage");
 
 const joinChat = (io, socket, currentUser, chats) => {
     let currentChat;
