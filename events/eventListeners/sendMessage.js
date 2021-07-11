@@ -6,12 +6,14 @@ const sendMessage = (io, socket, chat) => {
         const newMessage = new Message(messageData);
 
         if (messageData.receiver.type === 'bot') {
+            chat.addMessage(newMessage);
             handleBotReceiveMessage(socket, messageData, chat);
         } else {
+            chat.addMessage(newMessage);
             socket.broadcast.to(chat.id).emit('receive_message', newMessage);
         }
 
-        chat.addMessage(newMessage);
+
     });
 };
 
