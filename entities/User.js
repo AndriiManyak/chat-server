@@ -6,7 +6,7 @@ class User {
     constructor(sockedId) {
         this.name = generateRandomName();
         this.description = 'new user description';
-        this.image = 'https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg';
+        this.image = 'https://i.ibb.co/FzL4CmY/user-image.png';
         this.id = User.idCounter;
         this.isOnline = true;
         this.socketId = sockedId
