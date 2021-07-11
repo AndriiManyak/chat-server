@@ -1,6 +1,7 @@
 const sendMessage = require('./sendMessage');
 const defineChat = require('../../utils/defineChat');
 const Chat = require('../../entities/Chat');
+const leaveChatRooms = require("../../utils/leaveChatRooms");
 
 const joinChat = (io, socket, currentUser, chats) => {
     let currentChat;
@@ -9,6 +10,7 @@ const joinChat = (io, socket, currentUser, chats) => {
         const definedChat = defineChat(chats, currentUser, connectedUser);
 
         socket.removeAllListeners('send_message');
+        leaveChatRooms(socket);
 
         if (definedChat) {
             currentChat = definedChat

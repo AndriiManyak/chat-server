@@ -4,6 +4,7 @@ class Message {
         this.author = messageData.author;
         this.text = messageData.text;
         this.time = messageData.time;
+        this.receiver = messageData.receiver;
     };
 
     setSeenTime() {

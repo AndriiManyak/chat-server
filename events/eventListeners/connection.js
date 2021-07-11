@@ -1,6 +1,7 @@
 const disconnect = require('./disconnect');
 const joinChat = require('./joinChat');
 const User = require('../../entities/User');
+const activateSpamBot = require("../../utils/activateSpamBot");
 
 const connection = (io, contacts, chats) => {
     io.on('connection', socket => {
@@ -25,6 +26,7 @@ const connection = (io, contacts, chats) => {
 
         io.to('messenger').emit('receive_contacts', contacts);
 
+        activateSpamBot(io, currentUser, chats);
         joinChat(io, socket, currentUser, chats);
         disconnect(socket, io, contacts, currentUser);
     });
