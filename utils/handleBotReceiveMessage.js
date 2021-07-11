@@ -1,6 +1,4 @@
 const Message = require('../entities/Message');
-const parseTime = require("./parseTime");
-const {v4} = require("uuid");
 
 const handleBotReceiveMessage = (socket, message, chat) => {
     const {receiver: bot, text, author} = message;
