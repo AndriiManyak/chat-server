@@ -9,7 +9,7 @@
 ### Installing
 * Fork and clone this repository
 * Run `npm install` in your terminal
-* Run `npm start`
+* Run `npm serve`
 
 ## Troubleshooting
 For any contributing or problem solving you could find me [here](https://t.me/AndriyManyak)
