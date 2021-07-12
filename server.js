@@ -1,13 +1,13 @@
 const connection = require('./events/eventListeners/connection');
 const express = require('express');
 const socket = require('socket.io');
+const cors = require('cors');
 const port = process.env.PORT || 5000;
 
 const echoBot = require('./bots/echoBot');
 const ignoreBot = require('./bots/ignoreBot');
 const reverseBot = require('./bots/reverseBot');
 const spamBot = require('./bots/spamBot');
-const cors = require("cors");
 
 const app = express();
 app.use(cors());
