@@ -34,10 +34,10 @@ const handleBotReceiveMessage = (socket, message, chat) => {
 
             const changedMessages = makeMessagesSeen(chat, bot.id);
             const newMessage = new Message(messageData);
-            chat.addMessage(newMessage);
 
             setTimeout(() => {
                 if (changedMessages > 0) {
+                    chat.addMessage(newMessage);
                     socket.emit('receive_messages', chat.messages);
                 } else {
                     socket.emit('receive_message', newMessage);
