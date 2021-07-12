@@ -1,6 +1,7 @@
 const connection = require('./events/eventListeners/connection');
 const express = require('express');
 const socket = require('socket.io');
+const cors = require('cors');
 const port = process.env.PORT || 5000;
 
 const echoBot = require('./bots/echoBot');
@@ -9,6 +10,7 @@ const reverseBot = require('./bots/reverseBot');
 const spamBot = require('./bots/spamBot');
 
 const app = express();
+app.use(cors());
 
 const server = app.listen(port, () => {
     console.log(`server is running on port ${port}`);
