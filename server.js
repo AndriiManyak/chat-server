@@ -7,8 +7,10 @@ const echoBot = require('./bots/echoBot');
 const ignoreBot = require('./bots/ignoreBot');
 const reverseBot = require('./bots/reverseBot');
 const spamBot = require('./bots/spamBot');
+const cors = require("cors");
 
 const app = express();
+app.use(cors());
 
 const server = app.listen(port, () => {
     console.log(`server is running on port ${port}`);
