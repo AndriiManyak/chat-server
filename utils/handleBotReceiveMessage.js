@@ -1,4 +1,5 @@
 const Message = require('../entities/Message');
+const makeMessagesSeen = require("./makeMessagesSeen");
 
 const handleBotReceiveMessage = (socket, message, chat) => {
     const {receiver: bot, text, author} = message;
@@ -12,8 +13,15 @@ const handleBotReceiveMessage = (socket, message, chat) => {
             };
 
             const newMessage = new Message(messageData);
-            socket.emit('receive_message', newMessage);
+
+            const changedMessages = makeMessagesSeen(chat, bot.id);
             chat.addMessage(newMessage);
+
+            if (changedMessages > 0) {
+                socket.emit('receive_messages', chat.messages);
+            } else {
+                socket.emit('receive_message', newMessage);
+            }
 
             break;
         }
@@ -24,11 +32,16 @@ const handleBotReceiveMessage = (socket, message, chat) => {
                 text: text.split('').reverse().join(''),
             };
 
+            const changedMessages = makeMessagesSeen(chat, bot.id);
             const newMessage = new Message(messageData);
             chat.addMessage(newMessage);
 
             setTimeout(() => {
-                if (socket) socket.emit('receive_message', newMessage);
+                if (changedMessages > 0) {
+                    socket.emit('receive_messages', chat.messages);
+                } else {
+                    socket.emit('receive_message', newMessage);
+                }
             }, 3000);
 
             break;
